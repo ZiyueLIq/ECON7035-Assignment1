@@ -9,6 +9,7 @@ def clean(input1, input2, output):
     df_merge.dropna(inplace=True)
     df_merge = df_merge[~df_merge['job'].str.contains('insurance', case=False)]
     df_merge.to_csv(output, index=False)
+    return df_merge
 
 
 if __name__ == '__main__':
@@ -20,4 +21,5 @@ if __name__ == '__main__':
     parser.add_argument('output', help='Cleaned data file (CSV)')
     args = parser.parse_args()
 
-    clean(args.input1, args.input2, args.output)
+    cleaned = clean(args.input1, args.input2, args.output)
+    cleaned.shape
